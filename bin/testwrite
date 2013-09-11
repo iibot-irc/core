@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "oi, this is pretty sketchy software" > $HOME/irc/irc.freenode.net/in

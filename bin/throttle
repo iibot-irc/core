@@ -1,0 +1,7 @@
+#!/bin/bash
+IFS=`echo -ne "\n\r"`
+for LINE in `cat /dev/stdin`
+do
+  echo $LINE
+  sleep $1
+done

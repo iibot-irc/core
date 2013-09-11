@@ -1,0 +1,3 @@
+#!/bin/bash
+PARAM=$1
+grep -e "^$PARAM: " $HOME/etc/iibot.conf | head -n 1 | sed -e "s/^$PARAM: //"

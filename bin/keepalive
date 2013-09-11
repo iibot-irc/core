@@ -1,0 +1,9 @@
+#!/bin/bash
+timeout 5s $HOME/bin/testwrite
+RC=$?
+if [ "$RC" -ne "0" ]; then
+	echo "rebooting iibot"
+	$HOME/bin/start
+else
+	echo "stuff is cool"
+fi

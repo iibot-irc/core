@@ -1,0 +1,5 @@
+# This is a sample config file
+# The real one should be iibot.conf
+
+NAME: myircbot
+USERNAME: iibot

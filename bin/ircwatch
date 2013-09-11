@@ -1,0 +1,31 @@
+#!/bin/bash
+
+BOTNAME=`config NAME`
+CHAN=$1
+CHAN_II=$HOME/irc/irc.freenode.net/$CHAN
+
+inotifywait -e modify $CHAN_II/out > /dev/null 2>&1
+
+STUFF=`tail -n 1 $CHAN_II/out`
+USER=`echo "$STUFF" | sed -e 's/^[^<]*<//' -e 's/>.*$//'`
+
+if [ "$USER" != $BOTNAME ]; then
+	MSG=`echo "$STUFF" | sed -e 's/^[^>]*>\ //'`
+	if [[ "$MSG" == "$BOTNAME: ping" ]]; then
+		echo "$USER: pong" > $CHAN_II/in
+	elif [ `expr match "$MSG" "$BOTNAME: echo"` -ne 0 ]; then
+		echo "$USER:${MSG:12}" > $CHAN_II/in
+
+### This goes with github.com/iibot/jerkcity
+#	elif [ `expr match "$MSG" "$BOTNAME: jc"` -ne 0 ]; then
+#		$HOME/bin/play_jc "${MSG:11}" > $CHAN_II/in
+
+### These goes with github.com/iibot/twitter
+#	elif [ `expr match "$MSG" "$BOTNAME: tweet "` -ne 0 ]; then
+#		$HOME/bin/tweet.py tweet "${MSG:14}" "$USER" > $CHAN_II/in
+#	elif [ `expr match "$MSG" "$BOTNAME: delete_tweet '` -ne 0 ]; then
+#		echo `$HOME/bin/tweet.py delete_tweet "${MSG:21}" "$USER"` > $CHAN_II/in
+
+	fi
+fi
+$HOME/bin/ircwatch $1 &
