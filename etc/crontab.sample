@@ -1,0 +1,10 @@
+##
+## This file is an example!
+## You will probably want to keep the "keepalive" script though.
+## Use cron for recurring events (e.g. fetching tweets, RSS, ...)
+##
+
+# m h  dom mon dow   command
+
+# Core functionality
+*/2 * * * *  $HOME/bin/keepalive 2>&1
