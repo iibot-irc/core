@@ -1,32 +1,28 @@
 #!/bin/bash
-BOTNAME=`$HOME/config nick`
-USERNAME=`$HOME/config user`
-IRC=$HOME/irc/irc.freenode.net
+set -e
 
-if [ -f $HOME/bin/pre_start ]; then
-  $HOME/bin/pre_start
-  if [ "$?" -ne "0" ]; then
-    exit
-  fi
-fi
+BOTNAME=`$HOME/bin/config nick`
+USERNAME=`$HOME/bin/config user`
+NETWORK=`$HOME/bin/config network`
+
+IRC=$HOME/irc/$NETWORK
 
 if [ `whoami` != $USERNAME ] ; then
   echo "Must run as $USERNAME"
-  exit
+  exit -1
 fi
-killall -9 ii
-killall -9 ircwatch
-rm -rf $HOME/irc/irc.freenode.net
-$HOME/bin/ii irc.freenode.net -n $BOTNAME -i $HOME/irc/ >> $HOME/log/ii.log 2>&1 &
-echo "ii process started."
-sleep 10
-echo "/j chanserv message" > $IRC/in
-echo "/j nickserv message" > $IRC/in
-echo "opened conversations with chanserv and nickserv"
-sleep 2
-echo "identify $IRC_PASS" > $IRC/nickserv/in
-echo "identified with nickserv"
-sleep 1
+
+if [ -f $HOME/bin/pre_start ]; then
+  $HOME/bin/pre_start
+fi
+
+# Kill any existing iibot stuff
+killall -9 ii || true
+killall -9 ircwatch || true
+rm -rf $IRC
+
+# Connect to irc
+$HOME/bin/ii $NETWORK -n $BOTNAME -i $HOME/irc/ >> $HOME/log/ii.log 2>&1 &
 
 if [ -f $HOME/bin/post_start ]; then
   $HOME/bin/post_start

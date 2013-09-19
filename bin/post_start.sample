@@ -1,0 +1,23 @@
+#!/bin/bash
+
+##
+## This is an example post_start file.
+## Change (or delete) it as you see fit.
+##
+
+IRC_PASS=`$HOME/bin/config ircpass`
+NETWORK=`$HOME/bin/config network`
+
+IRC=$HOME/irc/$NETWORK
+
+# Authenticate with services
+echo "ii process started."
+sleep 10
+echo "/j chanserv message" > $IRC/in
+echo "/j nickserv message" > $IRC/in
+echo "opened conversations with chanserv and nickserv"
+sleep 2
+echo "identify $IRC_PASS" > $IRC/nickserv/in
+echo "identified with nickserv"
+sleep 1
+
