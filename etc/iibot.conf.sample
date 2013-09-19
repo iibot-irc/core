@@ -1,6 +1,5 @@
-# This is a sample config file
-# The real one should be iibot.conf
-
-NAME: myircbot
-USERNAME: iibot
-IRC_PASS: foobar
+{
+  "_comment": "this is only a sample! real config goes in iibot.conf. You can delete this line after",
+  "nick": "myircbot",
+  "user": "iibot"
+}

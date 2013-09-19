@@ -1,3 +1,10 @@
-#!/bin/bash
-PARAM=$1
-grep -e "^$PARAM: " $HOME/etc/iibot.conf | head -n 1 | sed -e "s/^$PARAM: //"
+#!/usr/bin/env python
+import json
+import sys
+from os.path import expanduser
+
+def config(name):
+  print json.load(open(expanduser('~') + '/etc/iibot.conf'))[name]
+
+if __name__ == '__main__':
+  config(sys.argv[1])

@@ -1,6 +1,6 @@
 #!/bin/bash
-BOTNAME=`config NAME`
-USERNAME=`config USERNAME`
+BOTNAME=`$HOME/config nick`
+USERNAME=`$HOME/config user`
 IRC=$HOME/irc/irc.freenode.net
 
 if [ -f $HOME/bin/pre_start ]; then

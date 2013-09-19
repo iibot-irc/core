@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BOTNAME=`config NAME`
+BOTNAME=`$HOME/config nick`
 CHAN=$1
 CHAN_II=$HOME/irc/irc.freenode.net/$CHAN
 
