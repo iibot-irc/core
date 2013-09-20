@@ -2,7 +2,7 @@
 timeout 5s $HOME/bin/testwrite
 RC=$?
 if [ "$RC" -ne "0" ]; then
-	echo "rebooting iibot"
+	echo "rebooting"
 	$HOME/bin/start
 else
 	echo "stuff is cool"

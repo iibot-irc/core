@@ -1,8 +1,9 @@
 #!/bin/bash
 
-BOTNAME=`$HOME/config nick`
+NETWORK=`$HOME/config.py network`
+BOTNAME=`$HOME/config.py nick`
 CHAN=$1
-CHAN_II=$HOME/irc/irc.freenode.net/$CHAN
+CHAN_II=$HOME/irc/$NETWORK/$CHAN
 
 inotifywait -e modify $CHAN_II/out > /dev/null 2>&1
 

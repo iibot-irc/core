@@ -4,7 +4,7 @@ import sys
 from os.path import expanduser
 
 def config(name):
-  print json.load(open(expanduser('~') + '/etc/iibot.conf'))[name]
+  return json.load(open(expanduser('~') + '/etc/iibot.conf'))[name]
 
 if __name__ == '__main__':
-  config(sys.argv[1])
+  print config(sys.argv[1])

@@ -1,2 +1,3 @@
 #!/bin/bash
-echo "oi, this is pretty sketchy software" > $HOME/irc/irc.freenode.net/in
+NETWORK=`$HOME/bin/config.py network`
+echo "oi, this is pretty sketchy software" > $HOME/irc/$NETWORK/in

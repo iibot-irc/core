@@ -1,28 +1,36 @@
 #!/bin/bash
 set -e
 
-BOTNAME=`$HOME/bin/config nick`
-USERNAME=`$HOME/bin/config user`
-NETWORK=`$HOME/bin/config network`
+BOTNAME=`$HOME/bin/config.py nick`
+USERNAME=`$HOME/bin/config.py user`
+NETWORK=`$HOME/bin/config.py network`
+IRC_PASS=`$HOME/bin/config.py ircpass`
 
 IRC=$HOME/irc/$NETWORK
+
+if [ -f $HOME/bin/pre_start ]; then
+  $HOME/bin/pre_start
+fi
 
 if [ `whoami` != $USERNAME ] ; then
   echo "Must run as $USERNAME"
   exit -1
 fi
 
-if [ -f $HOME/bin/pre_start ]; then
-  $HOME/bin/pre_start
-fi
+killall -9 ii -u $USERNAME || true
+killall -9 ircwatch -u $USERNAME || true
+rm -rf $IRC || true
 
-# Kill any existing iibot stuff
-killall -9 ii || true
-killall -9 ircwatch || true
-rm -rf $IRC
-
-# Connect to irc
 $HOME/bin/ii $NETWORK -n $BOTNAME -i $HOME/irc/ >> $HOME/log/ii.log 2>&1 &
+echo "ii process started."
+sleep 10
+echo "/j chanserv message" > $IRC/in
+echo "/j nickserv message" > $IRC/in
+echo "opened conversations with chanserv and nickserv"
+sleep 2
+echo "identify $IRC_PASS" > $IRC/nickserv/in
+echo "identified with nickserv"
+sleep 1
 
 if [ -f $HOME/bin/post_start ]; then
   $HOME/bin/post_start

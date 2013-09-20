@@ -5,8 +5,8 @@
 ## Change (or delete) it as you see fit.
 ##
 
-IRC_PASS=`$HOME/bin/config ircpass`
-NETWORK=`$HOME/bin/config network`
+IRC_PASS=`$HOME/bin/config.py ircpass`
+NETWORK=`$HOME/bin/config.py network`
 
 IRC=$HOME/irc/$NETWORK
 
