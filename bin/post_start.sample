@@ -21,3 +21,6 @@ echo "identify $IRC_PASS" > $IRC/nickserv/in
 echo "identified with nickserv"
 sleep 1
 
+
+# Join channels
+echo "/j #myfancychan" > $IRC/in
