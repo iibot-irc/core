@@ -22,15 +22,6 @@ killall -9 ircwatch -u $USERNAME || true
 rm -rf $IRC || true
 
 $HOME/bin/ii $NETWORK -n $BOTNAME -i $HOME/irc/ >> $HOME/log/ii.log 2>&1 &
-echo "ii process started."
-sleep 10
-echo "/j chanserv message" > $IRC/in
-echo "/j nickserv message" > $IRC/in
-echo "opened conversations with chanserv and nickserv"
-sleep 2
-echo "identify $IRC_PASS" > $IRC/nickserv/in
-echo "identified with nickserv"
-sleep 1
 
 if [ -f $HOME/bin/post_start ]; then
   $HOME/bin/post_start
