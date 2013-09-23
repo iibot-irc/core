@@ -8,13 +8,13 @@ IRC_PASS=`$HOME/bin/config.py ircpass`
 
 IRC=$HOME/irc/$NETWORK
 
-if [ -f $HOME/bin/pre_start ]; then
-  $HOME/bin/pre_start
-fi
-
 if [ `whoami` != $USERNAME ] ; then
   echo "Must run as $USERNAME"
   exit -1
+fi
+
+if [ -f $HOME/bin/pre_start ]; then
+  $HOME/bin/pre_start
 fi
 
 killall -9 ii -u $USERNAME || true
