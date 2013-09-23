@@ -1,5 +1,9 @@
 {
   "_comment": "this is only a sample! real config goes in iibot.conf. You can delete this line after",
+
+  "user": "iibot",
+
   "nick": "myircbot",
-  "user": "iibot"
+  "network": "irc.freenode.net",
+  "ircpass": "foo"
 }
