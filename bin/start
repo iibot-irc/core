@@ -21,7 +21,7 @@ killall -9 ii -u $USERNAME || true
 killall -9 ircwatch -u $USERNAME || true
 rm -rf $IRC || true
 
-$HOME/bin/ii $NETWORK -n $BOTNAME -i $HOME/irc/ >> $HOME/log/ii.log 2>&1 &
+$HOME/bin/ii -s $NETWORK -n $BOTNAME -i $HOME/irc/ >> $HOME/log/ii.log 2>&1 &
 
 if [ -f $HOME/bin/post_start ]; then
   $HOME/bin/post_start
